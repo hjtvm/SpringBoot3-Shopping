@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.springboot3shopping.mapper.temporaryMapper">
+    <insert id="addTemporary">
+        insert into temporary (p_name,p_price) values (#{pName},#{pPrice})
+    </insert>
+
+    <select id="selectAllTemporary" resultType="com.huang.springboot3shopping.bean.temporary">
+        select * from temporary ORDER BY p_name ASC
+    </select>
+
+    <delete id="deleteTemporary">
+        delete from temporary where id=#{id}
+    </delete>
+
+    <delete id="deleteAllTemporary">
+        delete from temporary
+    </delete>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.huang.springboot3shopping.mapper.ProductMapper">
+    <insert id="addProduct" parameterType="com.huang.springboot3shopping.bean.Product">
+        insert into products (p_id,p_name,p_price,p_stock,p_category) values (#{pId},#{pName},#{pPrice},#{pStock},#{pCategory})
+    </insert>
+
+    <update id="updateProduct" parameterType="com.huang.springboot3shopping.bean.Product">
+        update products
+        <set>
+            p_id=#{pId},
+            p_name=#{pName},
+            p_price=#{pPrice},
+            p_stock=#{pStock},
+            p_category=#{pCategory}
+        </set>
+        where id=#{id}
+    </update>
+
+    <update id="updateStock">
+        update products
+        set p_stock=p_stock-1
+        where p_name=#{pName}
+    </update>
+
+    <delete id="deleteProduct">
+        delete from products where id=#{id}
+    </delete>
+
+    <select id="getProductById" resultType="com.huang.springboot3shopping.bean.Product">
+        select * from products where id=#{id}
+    </select>
+
+    <select id="getProductByAll" resultType="com.huang.springboot3shopping.bean.Product">
+        select * from products ORDER BY p_id ASC
+    </select>
+
+    <select id="getProductByPId" resultType="java.lang.Integer">
+        select p_id from products
+    </select>
+
+    <select id="selectProduct" resultType="com.huang.springboot3shopping.bean.Product">
+        select *
+        from products
+        where (p_id like concat('%',#{pId},'%') and
+              p_name like concat('%',#{pName},'%') and
+              p_price like concat('%',#{pPrice},'%') and
+              p_category like concat('%',#{pCategory},'%') and
+              p_stock like concat('%',#{pStock},'%'))
+    </select>
+</mapper>

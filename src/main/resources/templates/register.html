@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>添加用户</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+  <script th:src="@{/js/user.js}"></script>
+</head>
+<body>
+<div class="div1">
+  <table width="100%" height="100%" align="center" bgcolor="#6495ed">
+    <tr>
+      <td><a th:href="@{/product}">商品操作</a></td>
+      <td><a th:href="@{/users}">用户列表</a></td>
+      <td><a th:href="@{/logout}" onclick="return logout2();">退出登录</a> </td>
+    </tr>
+  </table>
+</div>
+<div class="container">
+  <h2>添加用户</h2>
+  <div class="red" align="center" th:text="${msg}"></div>
+  <form method="post" th:action="@{/authen}" onsubmit="return isTrue();">
+    <label for="username">用户名：</label>
+    <input type="text" id="username" name="username" required><br><br>
+    <label for="password">密码：</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <label for="roleId">角色：</label>
+    <input type="text" id="roleId" name="roleId" required><br><br>
+    <input type="reset" name="重置"/><br><br>
+    <input type="submit" name="注册"/>
+  </form>
+</div>
+</div>
+</body>
+</html>
